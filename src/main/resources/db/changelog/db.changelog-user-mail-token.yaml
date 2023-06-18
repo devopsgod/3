@@ -1,0 +1,35 @@
+databaseChangeLog:
+- changeSet:
+    id: create_user_token_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: user_token
+        columns:
+        - column:
+            name: ut_token
+            type: varchar(80)
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_ut
+        - column:
+            name: u_id
+            type: UUID
+            constraints:
+              nullable: false
+        - column:
+            name: ut_created
+            type: TIMESTAMP WITHOUT TIME ZONE
+            defaultValueComputed: now()
+            constraints:
+              nullable: false
+        - column:
+            name: ut_expired
+            type: TIMESTAMP WITHOUT TIME ZONE
+    - addForeignKeyConstraint:
+        baseColumnNames: u_id
+        baseTableName: user_token
+        constraintName: fk_user_token_user
+        referencedColumnNames: u_id
+        referencedTableName: users

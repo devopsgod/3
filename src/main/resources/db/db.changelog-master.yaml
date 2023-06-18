@@ -1,0 +1,13 @@
+databaseChangeLog:
+- include:
+    file: changelog/db.changelog-role.yaml
+    relativeToChangelogFile: true
+- include:
+    file: changelog/db.changelog-user.yaml
+    relativeToChangelogFile: true
+- include:
+    file: changelog/db.changelog-user-mail-token.yaml
+    relativeToChangelogFile: true
+- include:
+    file: changelog/db.changelog-oauth-client.yaml
+    relativeToChangelogFile: true

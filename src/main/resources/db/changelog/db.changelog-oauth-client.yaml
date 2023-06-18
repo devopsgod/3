@@ -1,0 +1,80 @@
+databaseChangeLog:
+- changeSet:
+    id: create-oauth-client-table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: oauth_client
+        columns:
+        - column:
+            name: oc_client_id
+            type: varchar(50)
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_client
+        - column:
+            name: oc_resource_ids
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: oc_client_secret
+            type: varchar(60)
+            constraints:
+              nullable: false
+        - column:
+            name: oc_scope
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: oc_grant_types
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: oc_authorities
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: oc_access_token_expiration
+            type: Integer
+            constraints:
+              nullable: false
+        - column:
+            name: oc_refresh_token_expiration
+            type: Integer
+            constraints:
+              nullable: false
+        - column:
+            name: oc_additional_information
+            type: varchar(400)
+        - column:
+            name: oc_auto_approve
+            type: varchar(255)
+            constraints:
+              nullable: false
+- changeSet:
+    id: initialize_clients
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: initialize/oauth-client.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true
+- changeSet:
+    id: initialize_clients_for_tests
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: h2
+        encoding: utf8
+        path: initialize/tests/oauth-client-h2.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

@@ -1,0 +1,82 @@
+databaseChangeLog:
+- changeSet:
+    id: create_user_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: users
+        columns:
+        - column:
+            name: u_id
+            type: UUID
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_user
+        - column:
+            name: r_id
+            type: UUID
+            constraints:
+              nullable: false
+        - column:
+            name: u_email
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: u_password
+            type: varchar(80)
+            constraints:
+              nullable: false
+        - column:
+            name: u_parameters
+            type: json
+        - column:
+            name: u_locked
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: u_deleted
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: u_activated
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+    - addForeignKeyConstraint:
+        baseColumnNames: r_id
+        baseTableName: users
+        constraintName: fk_role_users
+        referencedColumnNames: r_id
+        referencedTableName: role
+    - addUniqueConstraint:
+        columnNames: u_email,u_deleted
+        constraintName: uc_user_u_email_deleted
+        tableName: users
+- changeSet:
+    id: initialize_users
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: initialize/user.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+- changeSet:
+    id: initialize_users_for_tests
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: h2
+        encoding: utf8
+        path: initialize/tests/user-h2.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

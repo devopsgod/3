@@ -1,0 +1,3 @@
+INSERT INTO oauth_client (oc_client_id, oc_resource_ids, oc_client_secret, oc_scope, oc_grant_types, oc_authorities, oc_access_token_expiration, oc_refresh_token_expiration, oc_auto_approve)
+VALUES
+  ('FULL_ACCESS_CLIENT', 'authorization', '$2a$10$u8gYd4mgHz655c.YR/LBGOqpnY6cozZO7HydLMEzvLMwbnDILQDiq', 'abiturient:read,abiturient:write,abiturient:admin,abiturient:export,dictionary:read,dictionary:write,dictionary:admin,backend-service,user:write', 'client_credentials,refresh_token,password', '', 86400, 1209600, '*')

@@ -1,0 +1,57 @@
+databaseChangeLog:
+- changeSet:
+    id: create_role_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: role
+        columns:
+        - column:
+            name: r_id
+            type: UUID
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_role
+        - column:
+            name: r_name
+            type: varchar(50)
+            constraints:
+              nullable: false
+        - column:
+            name: r_display_name
+            type: varchar(50)
+            constraints:
+              nullable: false
+        - column:
+            name: r_is_free_access
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: r_name
+        constraintName: uc_role_r_name
+        tableName: role
+- changeSet:
+    id: initialize_roles
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: initialize/role.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true
+- changeSet:
+    id: initialize_roles_for_tests
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: h2
+        encoding: utf8
+        path: initialize/tests/role-h2.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

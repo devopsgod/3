@@ -1,0 +1,6 @@
+INSERT INTO oauth_client (oc_client_id, oc_resource_ids, oc_client_secret, oc_scope, oc_grant_types, oc_authorities, oc_access_token_expiration, oc_refresh_token_expiration, oc_auto_approve)
+VALUES
+  ('ADMISSION_INTERNAL_CLIENT', 'authorization,admission', '$2a$10$eL2bQNg2aaF4sQr1MmfaA.rtWsvurqcNiFnd6V5dk2ow7uzvcTVp2', 'abiturient:read,abiturient:write,abiturient:admin,abiturient:export,dictionary:read,dictionary:write,dictionary:admin', 'client_credentials,refresh_token', '', 86400, 1209600, '*'),
+  ('ADMISSION_CLIENT', 'authorization,admission', '$2a$10$rrhjcq7yXJpyaD7DieCvb.qs8p4gFxW8iv/rrEiuSIJNpQHwIF12C', 'abiturient:read,abiturient:write,dictionary:read,dictionary:write,ui-client', 'password,refresh_token', '', 86400, 1209600, '*'),
+  ('ADMISSION_SERVICE', 'authorization', '$2a$10$unvPxoSt/fX2IQfrb49jhuy7BB0kV2U.f2//AKeQayfckVy8CyjXG', 'backend-service,user:write', 'client_credentials,refresh_token', '', 86400, 1209600, '*'),
+  ('HEAD_DEPARTMENT_CLIENT', 'authorization,head-department', '$2a$10$yBN23DOGB2n1SuDF5N4jAuqcMrUT9U3rleYUXmyJSsoGklMFsfiqi', 'ui-client', 'password,refresh_token', '', 86400, 1209600, '*')

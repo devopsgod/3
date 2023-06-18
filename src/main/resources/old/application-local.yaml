@@ -1,0 +1,38 @@
+server:
+  port: 5000
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authorization
+    username: vstu_authorization
+    password: authPort1x
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    properties:
+      hibernate:
+        temp.use_jdbc_metadata_defaults: false
+        enable_lazy_load_no_trans: true
+  liquibase:
+    change-log: classpath:db/db.changelog-master.yaml
+  mail:
+    username: vstu.mailer@gmail.com
+    password: sS123456
+    host: smtp.gmail.com
+    port: 587
+    properties:
+      mail:
+        smtp:
+          starttls.enable: true
+          auth: true
+  cloud:
+    discovery:
+      enabled: false
+mail:
+  confirm.path: http://localhost:${server.port}/api/uaa/account/confirm?uid=
+  reset-password.path: http://localhost:4200/reset-password?uid=
+token:
+  signing.key: bgM8ZUALPlm4nij35kFx1dp1yRzL4aAvsvWwrGlykx9T05Lgt7J53kaJ6BzbozNsGIQJR71n5NGzljd4Ae3wWhdSUnAkFIdIXCQmnkMlRvx1RwxMj3pQeArUg2K5eAhcNSPjTxthVslTemwO2GMRnm01HQPOa9R8m5fWuFdma3G1ZElZ0n8ctQ4n7KeZTLAhzMg5qSpNr2MrgkTYfrE9ci2VreGKMBo5O4TFyK52kY5m6HvlOCmcfZ5D8346KlJ
+  expire.time.hours: 9000
+  email.confirm.time.hours: 1
