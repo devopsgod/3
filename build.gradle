@@ -33,7 +33,7 @@ test {
 dependencies {
 
     // Spring starters
-    compile('org.springframework.cloud:spring-cloud-starter-config',
+    implementation('org.springframework.cloud:spring-cloud-starter-config',
             'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client',
             'org.springframework.boot:spring-boot-starter-security',
             'org.springframework.boot:spring-boot-starter-web',
@@ -42,17 +42,17 @@ dependencies {
     )
 
     // Oauth depends
-    compile(
+    implementation(
             'org.springframework.security.oauth:spring-security-oauth2:2.3.4.RELEASE',
             'org.springframework.security:spring-security-jwt:1.1.0.RELEASE'
     )
 
-    compile group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.0.10.RELEASE'
+    implementation group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.0.10.RELEASE'
 
 
     // DB depends
-    runtime('org.postgresql:postgresql')
-    compile(
+    runtimeOnly('org.postgresql:postgresql')
+    implementation(
             'org.springframework.boot:spring-boot-starter-data-jpa',
             'com.vladmihalcea:hibernate-types-52:2.9.9',
             'org.liquibase:liquibase-core',
@@ -68,11 +68,11 @@ dependencies {
             'com.google.code.gson:gson'
     )
 
-    compile('org.projectlombok:lombok')
+    implementation('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
     
-    compile('org.apache.commons:commons-lang3')
-    compile('org.modelmapper:modelmapper:2.0.0')
+    implementation('org.apache.commons:commons-lang3')
+    implementation('org.modelmapper:modelmapper:2.0.0')
 }
 
 dependencyManagement {
